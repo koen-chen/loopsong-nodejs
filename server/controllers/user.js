@@ -9,7 +9,10 @@ module.exports = function(app, db){
     });
 
     app.post('/login', function(request, response){
-        User.findOne({ username: request.body['username'], password: request.body['password'] }, function(err, user){
+        var shaSum = crypto.createHash('sha256');
+        shaSum.update(request.body.password);
+
+        User.findOne({ username: request.body['username'], password: shaSum.digest('hex') }, function(err, user){
             if (!err && user) {
                 request.session.loginUser = user;
                 if (request.body['remember']) {
@@ -40,9 +43,12 @@ module.exports = function(app, db){
     });
 
     app.post('/user/new', util.auth, function(request, response){
+        var shaSum = crypto.createHash('sha256');
+        shaSum.update(request.body.password);
+
         var user = new User({
             username: request.body.username,
-            password: request.body.password,
+            password: shaSum.digest('hex'),
             role: 'general',
             create_at: Date.now(),
             update_at: Date.now()
@@ -81,9 +87,12 @@ module.exports = function(app, db){
     });
 
     app.put('/user/:id/edit', util.auth, function(request, response){
+        var shaSum = crypto.createHash('sha256');
+        shaSum.update(request.body.password);
+        
         var user = {
             username: request.body.username,
-            password: request.body.password,
+            password: shaSum.digest('hex'),
             update_at: Date.now()
         };
 
