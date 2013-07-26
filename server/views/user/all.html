@@ -1,0 +1,29 @@
+{% extends 'adminLayout.html' %}
+
+{% block content %}
+<a href="/user/{{ loginUser._id }}" class="backBtn">&#171; 返回管理界面</a>
+
+{% if message %}
+<div class="tips">{{ message }}</div>
+{% endif %}
+
+<a href="/user/new" class="addItemNav">添加新用户</a>
+
+<div class="editAccountList">
+    <em>现有用户</em>
+    <ul class="accountList">
+    {% for user in users %}
+        <li class="userItem" userId="{{ user._id }}">
+            <h2 class="title">
+               {{ user.username }}
+            </h2>
+
+            <div class="operateWrap">
+                <a class="editBtn" href="/user/{{ user._id }}/edit" title="修改" >修改</a>
+                <a class="deleteBtn" href="/user/{{ user._id }}/delete" title="删除">删除</a>
+            </div>
+        </li>
+    {% endfor %}   
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="albumModel">
+	<div class="album">
+		<div class="cover">
+			<img src="/images/{{ album.cover }}" width="300px" height="300px" />
+		</div>
+
+		<div class="info">
+			<h2 class="title">{{ album.title }}</h2>
+			<div><em>艺人 : </em>{{ album.author }}</div>
+			<div><em>类别 : </em>{{ album.type }}</div>
+			<div><em>发行时间 : </em>{{ album.published }}</div>
+			<div><em>唱片公司 : </em>{{ album.company }}</div>
+
+			<div class="relInfo">
+				<h4 class="listen">试听 :</h4>
+				<ul>
+					<li><a target="_blank" class="xiami" href="{{ album.links.xiami }}">虾米</a></li>
+					<li><a target="_blank" class="doubanFM" href="{{ album.links.douban }}">豆瓣</a></li>
+					<li><a target="_blank" class="kuwo" href="{{ album.links.kuwo }}">酷我</a></li>
+				</ul>
+
+				<h4 class="buy">购买 :</h4>
+				<ul>
+					<li><a target="_blank" class="taobao" href="{{ album.links.taobao }}">淘宝</a></li>
+				</ul>
+
+				<h4 class="share">分享 :</h4>
+				<ul>
+					<li><a target="_blank" class="weibo">新浪微博</a></li>
+					<li><a target="_blank" class="qqWeibo">腾讯微博</a></li>
+					<li><a target="_blank" class="douban">豆瓣</a></li>
+					<li><a target="_blank" class="renren">人人</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="detail">
+			<h3>专辑介绍</h3>
+			<p>{{ album.detail }}</p>
+		</div>
+
+		<div class="musicList">
+			<h3>曲目列表</h3>
+			<ol>
+			{% for track in album.trackList %}
+				<li>{{ track }}</li>
+			{% endfor %}
+			</ol>
+		</div>
+	</div>
+</div>
+{% endblock %}

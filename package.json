@@ -1,0 +1,31 @@
+{
+  "name": "loopsong-nodejs",
+  "version": "0.0.1",
+  "description": "loopsong.com",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ichenkun/loopsong-nodejs.git"
+  },
+  "author": "ichenkun",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "7e801aa42e4a68ed0ef5fd43fde305f2d35d6cd7",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9",
+    "grunt-concurrent": "~0.3.0",
+    "grunt-nodemon": "0.0.7",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-less": "~0.6.4"
+  },
+  "dependencies": {
+    "less": "~1.4.1",
+    "express": "~3.3.4",
+    "swig": "~0.14.0",
+    "consolidate": "~0.9.1",
+    "mongoose": "~3.6.14",
+    "async": "~0.2.9",
+    "cheerio": "~0.12.0"
+  }
+}

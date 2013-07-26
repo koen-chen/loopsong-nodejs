@@ -1,0 +1,617 @@
+@import "reset.css";
+
+.box-shadow(...) {
+	-webkit-box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	-ms-box-shadow: @arguments;
+	box-shadow: @arguments;
+}
+
+@mainColor: #f47723;
+@textColor: #666;
+@bg: url(../images/bg.png) repeat 0 0;
+
+html, body { 
+	width: 100%;
+	height: 100%;
+}  
+
+body {
+	font: 12px Helvetica,Arial,sans-serif;
+	color: @textColor;
+	background: url(../images/body_bg.png) repeat 0 0;
+	
+	a, button {
+		color: @textColor;
+	}
+	button {
+		display: block;
+	}
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 50px;
+	background: @bg;
+	border-top: 2px solid @mainColor;
+	z-index: 100;
+	.box-shadow(0px; 0px; 4px; #bfbfbf);
+
+	.headerInner {
+		position: relative;
+		width: 960px;
+		margin: 0 auto;
+	}
+
+	.logo a {
+		width: 260px;
+		height: 80px;
+		position: absolute;
+		top: 0px;
+		left: 50%;
+		margin-left: -130px;
+		background: url(../images/logo.png) no-repeat center center;
+		text-indent: -9999px;
+	}
+
+	.searchForm {
+		position: absolute;
+		width: auto;
+		height: auto;
+		left: 65px;
+		top: 18px;
+
+		input {
+			width: 80px;
+			height: 20px;
+			padding: 0 20px 0 3px;
+			border: 1px solid #bfbfbf;
+			color: @textColor;
+			background: transparent;
+		}
+
+		.submitBtn {
+			width: 14px;
+			height: 14px;
+			position: absolute;
+			right: 3px;
+			top: 50%;
+			margin-top: -7px;
+			background: url(../images/search_btn.png) no-repeat center center;
+		}
+	}
+
+	//音乐风格列表
+	.albumTypes {
+		position: absolute;
+		top: 13px;
+		left: 20px;
+		width: auto;
+		height: auto;
+
+		.albumTypesBtn {
+			width: 30px;
+			height: 30px;
+			background: url(../images/list_btn.png) no-repeat center center;
+			text-indent: -9999px;
+		}
+
+		.albumTypesBtn.active {
+			background: url(../images/list_active_btn.png) no-repeat center center;
+		}
+
+		> ul {
+			display: none;
+			background: @bg;
+			border: 1px solid #ddd;
+			margin-top: 5px ;
+
+			li {
+				position: relative;
+
+				&:hover {
+					> .name {
+						background: @mainColor;
+						color: #fff;
+					}
+
+					> .total {
+						background: #fff;
+						color: #333;
+					}
+				}
+			}	
+
+			.name {
+				display: block;
+				width: 80px;
+				padding: 6px 10px;
+			}
+
+			.total { 
+				position: absolute;
+				top: 6px;
+				right: 5px;
+				padding: 0 2px;
+				border: 1px solid #ddd;
+				border-radius: 10px;
+				background: #dfdfdf;
+				opacity: 0.8;
+				font-size: 11px;
+			}
+		}
+	}
+	
+	.loginBtn, .logoutBtn, .adminBtn {
+		position: absolute;
+		right: 15px;
+		top: 15px;
+		width: 40px;
+		padding: 5px;
+		text-align: center;
+
+		&:hover { 
+			color: @mainColor;
+		}
+	}
+	.adminBtn {
+		right: 60px;
+	}
+}
+.main {
+	position: relative;
+	width: 960px;
+	height: 100%;
+	margin: 100px auto 0;
+	
+	//排序按钮
+	.navBar {
+		position: relative;
+		width: 244px;
+		height: auto;
+		margin: 40px auto 0;
+		padding-bottom: 6px;
+
+		.sortNav {
+			position: relative;
+			height: 30px;
+			padding-bottom: 6px;
+			border-bottom: 1px solid @mainColor;
+			
+			li {
+				width: auto;
+				height: auto;
+				position: absolute;
+
+				a {
+					width: 80px;
+					height: 30px;
+					float: left;
+					line-height: 31px;
+					text-align: center;
+				}
+			}
+
+			.popular {
+				left: 80px;
+			}
+
+			.recommend {
+				left: 160px;
+			}
+
+			.active {
+				a {
+					color: @mainColor;
+				}
+			}
+		}
+		
+		.navBox {
+			position: absolute;
+			bottom: 0;
+			left: 34px;
+			display: block;
+			width: 12px;
+			height: 12px;
+			background: url(../images/nav_active.png) no-repeat 0 0;
+		}
+	}
+
+	.titleTips {
+		width: 100%;
+		font-size: 18px;
+		color: @mainColor;
+		text-indent: 18px;
+		margin: 10px 0;
+	}
+
+	.titleTips:before {
+        display: inline;
+        content: '|';
+        padding-right: 1px;
+        margin-right: 5px;
+        color: @mainColor;
+        background: @mainColor;
+    }
+
+	//专辑列表 
+	.albumList {
+		float: left;
+		margin-top: 20px;
+		width: 100%;
+
+		li {
+			position: relative;
+			width: 200px;
+			height: 240px;
+			margin: 18px;
+			float: left;
+		}
+
+		.sleeve {
+			display: block;
+			position: absolute;
+			width: 200px;
+			height: 39px;
+			background: url(../images/sleeve.png) no-repeat 0 0;
+		}
+
+		.cover { 
+			position: relative;
+			display: block;
+			width: 200px;
+			height: 200px;
+		}
+
+		.shine {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			background: url(../images/shine.png) no-repeat 0 0;
+		}
+
+		.title, .artist {
+			width: 100%;
+			text-align: center;
+		}
+
+		.title a {
+			display: block;
+			max-height: 28px;
+			line-height: 16px;
+			overflow: hidden;
+			padding: 5px 0;
+			color: @mainColor;
+			text-shadow: 0 0 10px #fff;
+
+			&:hover {
+				background: @mainColor;
+				.box-shadow(inset; 0px; 1px; 6px; rgba(0,0,0,0.4));
+				
+			} 
+		}
+
+		.title:hover a { 
+			color: #fff;
+		}
+
+		.albumMetadata {
+			display: none;
+		}
+	}
+}
+
+.albumModel {
+	padding: 20px 0;
+
+	.album {
+		width: 800px;
+		margin: auto;
+	}
+
+	h3 {	
+		font: 16px Arial, Helvetica, sans-serif;
+		color: #111;
+		padding-bottom: 10px;
+	}
+
+	h3:before {
+		display: inline;
+		content: '|';
+		padding-right: 1px;
+		margin-right: 5px;
+		color: @mainColor;
+		background: @mainColor;
+	}
+
+	.cover {
+		width: 300px;
+		height: 300px;
+		float: left;
+	}
+
+	.info {
+		width: 460px;
+		float: right;
+
+		.title {
+			font: 500 26px/1.2 "Microsoft YaHei";
+			color: #333;
+		}
+
+		> div {
+			margin: 10px 0;
+		}
+
+		em {
+			font-weight: bold;
+			padding-right: 10px;
+		}
+
+		.relInfo {
+			margin-top: 10px;
+			padding-top: 10px;
+			border-top: 1px dashed #333;
+
+			h4 {
+				font-weight: bold;
+			}
+
+			ul {
+				overflow: hidden;
+				margin: 8px 0 16px;
+			}
+
+			li {
+				float: left;
+				width: auto;
+				height: auto;
+				margin-right: 12px;
+
+				a {
+					float: left;
+					width: auto;
+					height: 16px;
+					display: block;
+					padding-left: 20px;
+				}
+			}
+			
+			.xiami { 
+				background: url(../images/xiami.png) no-repeat 0 center;
+			}
+			.doubanFM { 
+				background: url(../images/doubanFM.png) no-repeat 0 center; 
+			}
+			.qqMusic { 
+				background: url(../images/qqMusic.png) no-repeat 0 center; 
+			}
+			.kuwo { 
+				background: url(../images/kuwo.png) no-repeat 0 center; 
+			}
+			.amazon { 
+				background: url(../images/amazon.png) no-repeat 0 center; 
+			}
+			.taobao { 
+				background: url(../images/taobao.png) no-repeat 0 center; 
+			}
+			.jingdong { 
+				background: url(../images/jingdong.png) no-repeat 0 center;
+			}
+			.paipai { 
+				background: url(../images/paipai.png) no-repeat 0 center; 
+			}
+			.weibo {
+				background: url(../images/weibo_share.png) no-repeat 0 center; 
+			}
+			.qqWeibo {
+				background: url(../images/qqWeibo_share.png) no-repeat 0 center; 
+			}
+			.douban {
+				background: url(../images/douban_share.png) no-repeat 0 center; 
+			}
+			.renren {
+				background: url(../images/renren_share.png) no-repeat 0 center; 
+			}
+		}
+	}
+
+	.detail {
+		padding: 20px 0;
+		clear: both;
+
+		p {
+			line-height: 24px; 
+		}
+	}
+
+	.musicList li {
+		margin: 10px 0;
+	}
+}
+
+.closeBtn {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: -15px;
+	top: -15px;
+	text-indent: -9999px;
+	background: url(../images/close_btn.png) no-repeat 0 0;
+}
+
+// 登录表单
+.loginForm {
+	position: fixed;
+	top: 80px;
+	left: 50%;
+	margin-left: -200px;
+	width: 340px;
+	padding: 20px 30px 20px 30px;
+	
+	.userName { 
+		background: url(../images/account_icon.png) no-repeat center center;
+	}
+
+	.userPassword {
+		background: url(../images/password_icon2.png) no-repeat center center;
+	}
+
+	label { 
+		display: block;
+		width: 40px;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		text-indent: -9999px;
+	}
+
+	.inputRow { 
+		position: relative;
+		width: 318px;
+		height: 15px;
+		padding: 10px;
+		margin-bottom: 10px;
+		border: 1px solid #ddd;
+		background: #fff;
+
+		input {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 300px;
+			height: 100%;
+			border: 0;
+			color: @textColor;
+		}
+	}
+
+	.rememberRow {
+		width: 120px;
+		float: left;
+
+		input[type="checkbox"] {
+			position: relative;
+			left: 2px;
+			top: 4px;
+		}
+
+		span { 
+			position: relative;
+			left: 5px;
+			top: 2px;
+		}
+	}
+
+	.submitBtn { 
+		float: right;
+		width: 88px;
+		height: 34px;
+		border: none;
+		background: url(../images/button_bg.png) repeat 0 0;
+	
+		&:hover { 
+			color: @mainColor;
+		}
+	}
+
+	//社交账号登陆 
+	.socialLogin {
+		position: relative;
+		margin-top: 100px;
+		border-top: 1px dashed #aaa;
+
+		p {
+			width: 160px;
+			position: absolute;
+			top: -18px;
+			left: 50%;
+			margin-left: -80px;
+			text-align: center;
+		}
+
+		a { 
+			display: block;
+			width: 56px;
+			height: 56px;
+			margin: 30px 30px 0 25px;
+			float: left;
+			text-indent: -9999px;
+			background-repeat: no-repeat;
+			background-position: 0 0;
+		}
+
+		.weibo { 
+			background-image: url(../images/weibo_icon.png);
+		}
+
+		.qq { 
+			background-image: url(../images/qq_icon.png);
+		}
+
+		.douban {
+			background-image: url(../images/douban_icon.png);
+		}
+	}
+}
+
+.tips {
+	padding: 5px 0;
+	text-align: center;
+	background: @mainColor;
+	color: #fff;
+	margin-bottom: 5px;
+}
+
+#mask {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background: #000;
+	opacity: 0.7;
+	z-index: 1000;
+}
+
+.isotope-item {
+  z-index: 2;
+}
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+.isotope, .isotope .isotope-item {
+  	-webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -ms-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+}
+.isotope {
+    -webkit-transition-property: height, width;
+    -moz-transition-property: height, width;
+    -ms-transition-property: height, width;
+    -o-transition-property: height, width;
+    transition-property: height, width;
+}
+.isotope .isotope-item {
+  	-webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property:    -moz-transform, opacity;
+    -ms-transition-property:     -ms-transform, opacity;
+    -o-transition-property:      -o-transform, opacity;
+    transition-property:         transform, opacity;
+}
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+    -webkit-transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -ms-transition-duration: 0s;
+    -o-transition-duration: 0s;
+    transition-duration: 0s;
+}

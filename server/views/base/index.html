@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div id="navBar" class="navBar">
+    <ul id="sortNav" class="sortNav">
+        <li class="latest active"><a>最新</a></li>
+        <li class="popular"><a>热门</a></li>
+        <li class="recommend"><a>推荐</a></li>
+    </ul>
+    <span id="sortBox" class="navBox"></span>
+</div>
+
+{% if artist %}
+<h2 class="titleTips">{{ artist }}的专辑列表：</h2>
+{% endif %}
+
+{% if albumType %}
+<h2 class="titleTips">{{ albumType }}类别的专辑列表：</h2>
+{% endif %}
+
+{% if notice %}
+<h2 class="titleTips">{{ notice }}：</h2>
+{% endif %}
+
+<ul id="albumList" class="albumList">
+    {% for album in albums %}
+        <li class="albumItem" albumId="{{ album._id }}">
+            <span class="sleeve"></span>
+            <a href="/album/{{ album._id }}" class="cover">
+                <span class="shine"></span>
+                <img src="/images/{{ album.cover }}" width="200px" height="200px" />
+            </a>
+
+            <h2 class="title">
+                <a href="/album/{{ album._id }}">{{ album.title }}</a>
+            </h2>
+
+            <h3 class="artist"><a href="/artist/{{ album.author | url_encode }}">{{ album.author }}</a></h3>
+
+            <div class="albumMetadata">
+                <span class="createdAt">{{ album.create_at }}</span>
+                <span class="likeNum">{{ album.likes }}</span>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

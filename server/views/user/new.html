@@ -1,0 +1,21 @@
+{% extends 'adminLayout.html' %}
+
+{% block content %}
+<a href="/user/all" class="backBtn">&#171; 返回账户管理界面</a>
+
+<form action="/user/new" method="post" id="userForm" class="userForm">
+    {% if notice %}
+    <div class="tips">{{ notice }}</div>
+    {% endif %}
+
+    <div class="inputRow">
+        <label for="userName">账号</label>
+        <input type="text" name="username" id="userName" value="{{ user.username }}"  />
+    </div>
+    <div class="inputRow">
+        <label for="userPassword">密码</label>
+        <input type="text" name="password" id="userPassword" value="{{ user.password }}"  />
+    </div>
+    <button type="submit" data-mtype="submit" class="submitBtn">完成</button>
+</form>
+{% endblock %}

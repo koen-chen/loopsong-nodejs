@@ -1,0 +1,9 @@
+{% extends 'adminLayout.html' %}
+
+{% block content %}
+    <a href="/album/all">管理专辑</a>
+    
+    {% if loginUser.role == 'super' %}
+    <a href="/user/all">管理账户</a>
+    {% endif %}
+{% endblock %}

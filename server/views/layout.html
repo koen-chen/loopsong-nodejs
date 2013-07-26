@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>LoopSong</title>
+	<meta http-equiv="X-UA-Compatible", content="IE=edge,chrome=1" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/styles/main.css" />
+	<script src="/libs/jquery.js"></script>
+	<script src="/libs/isotope.js"></script>
+	<script src="/app.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="header">
+		<div class="headerInner">
+			<div class="logo">
+				<a href="/">LoopSong</a>
+			</div>
+
+			<div id="albumTypes" class="albumTypes">
+                <button type="button" id="albumTypesBtn" class="albumTypesBtn">Style List</button>
+                <ul>
+                    {% for type in albumTypes %}
+                    <li class="mainType">
+                        <a href="/style/{{ type.name }}" class="name">{{ type.name }}</a>
+                        <a href="/style/{{ type.name }}" class="total">{{ type.count }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+			<form action="/album/search" method="post" id="searchForm" class="searchForm">
+                <input type="text" name="keyword" placeholder="搜索专辑" />
+                <button type="submit" class="submitBtn"></button>
+            </form>
+
+			{% if loginUser %}
+				<a class="adminBtn" href="/user/{{ loginUser._id }}">管理</a><a class="logoutBtn" href="/logout">退出</a>	
+			{% else %}
+				<a id="loginBtn" class="loginBtn" href="/login">登陆</a>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="main">
+		{% block content %}{% endblock %}
+	</div>
+</div>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38058509-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

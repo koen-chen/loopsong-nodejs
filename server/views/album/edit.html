@@ -1,0 +1,55 @@
+{% extends 'adminLayout.html' %}
+
+{% block content %}
+<a href="/album/all" class="backBtn">&#171; 返回专辑管理界面</a>
+
+<form action="/album/{{ album._id }}/edit" method="post" id="albumForm" class="albumForm">
+    <input type="hidden" name="_method" value="put">
+    {% if notice %}
+    <div class="tips">{{ notice }}</div>
+    {% endif %}
+
+    <div class="inputRow">
+        <label>专辑类别</label>
+        <input type="text" name="type" value="{{ album.type }}" required="required"  data-error-message="必填字段" />
+    </div>
+    <div class="inputRow">
+        <label for="albumUrl" >专辑名称</label>
+        <input type="text" name="title" id="album_title"  value="{{ album.title }}" />
+    </div>
+    <div class="inputRow">
+        <label for="albumUrl" >艺人</label>
+        <input type="text" name="author" id="album_author" value="{{ album.author }}" />
+    </div>
+    <div class="inputRow">
+        <label for="albumUrl" >唱片公司</label>
+        <input type="text" name="company" id="album_company" value="{{ album.company }}" />
+    </div>
+    <div class="inputRow">
+        <label for="albumUrl" >发行时间</label>
+        <input type="text" name="published" id="album_published" value="{{ album.published }}" />
+    </div>
+    <div class="inputRow">
+        <label for="albumUrl" >专辑介绍</label>
+        <textarea name="detail" id="album_detail" rows='10' >{{ album.detail }}</textarea>
+    </div>
+    
+    <div class="inputRow">
+        <label for="taobaoLink" >淘宝地址</label>
+        <input type="text" name="taobaoLink" id="taobaoLink" value="{{ album.links.taobao }}" />
+    </div>
+    <div class="inputRow">
+        <label for="xiamiLink" >虾米地址</label>
+        <input type="text" name="xiamiLink" id="xiamiLink" value="{{ album.links.xiami }}" />
+    </div>
+    <div class="inputRow">
+        <label for="doubanLink" >豆瓣地址</label>
+        <input type="text" name="doubanLink" id="doubanLink" value="{{ album.links.douban }}" />
+    </div>
+    <div class="inputRow">
+        <label for="kuwoLink" >酷我地址</label>
+        <input type="text" name="kuwoLink" id="kuwoLink" value="{{ album.links.kuwo }}" />
+    </div>
+    <button type="submit" class="submitBtn" >提交</button>
+</form>
+{% endblock %}

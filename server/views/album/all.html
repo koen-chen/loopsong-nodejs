@@ -1,0 +1,33 @@
+{% extends 'adminLayout.html' %}
+
+{% block content %}
+<a href="/user/{{ loginUser._id }}" class="backBtn">&#171; 返回管理界面</a>
+
+<a href="/album/new" class="addItemNav">添加新专辑</a>
+
+<div class="editAlbumList">
+    <em>现有专辑</em>
+    <ul class="albumList">
+    {% for album in albums %}
+        <li class="albumItem" albumId="{{ album._id }}">
+            <span class="sleeve"></span>
+            <a href="/album/{{ album._id }}" class="cover">
+                <span class="shine"></span>
+                <img src="/images/{{ album.cover }}" width="200px" height="200px" />
+            </a>
+
+            <h2 class="title">
+                <a href="/album/{{ album._id }}">{{ album.title }}</a>
+            </h2>
+
+            <h3 class="artist">{{ album.author }}</h3>
+
+            <div class="operateWrap">
+                <a class="editBtn" href="/album/{{ album._id }}/edit" title="修改" >修改</a>
+                <a class="deleteBtn" href="/album/{{ album._id }}/delete" title="删除">删除</a>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

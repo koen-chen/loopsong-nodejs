@@ -1,0 +1,17 @@
+{% extends 'adminLayout.html' %}
+
+{% block content %}
+<a href="/album/all" class="backBtn">&#171; 返回专辑管理界面</a>
+
+<form action="/album/new" method="post" id="albumForm" class="albumForm">
+	{% if notice %}
+	<div class="tips">{{ notice }}</div>
+	{% endif %}
+
+	<div class="inputRow">
+		<label for="albumUrl" >专辑地址（目前仅支持虾米地址）</label>
+		<input type="text" name="albumUrl" id="albumUrl" />
+	</div>
+    <button type="submit" class="submitBtn" >提交</button>
+</form>
+{% endblock %}

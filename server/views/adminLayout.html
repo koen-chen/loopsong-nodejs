@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>LoopSong</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon"/>
+	<link rel="stylesheet" href="/styles/main.css" />
+	<link rel="stylesheet" href="/styles/admin.css" />
+	<script src="/libs/jquery.js"></script>
+	<script src="/admin.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="header">
+		<div class="headerInner">
+			<div class="logo"><a href="/">LoopSong</a></div>
+
+			<a href="/logout" id="logoutBtn" class="logoutBtn">退出</a>
+		</div>
+	</div>
+
+	<div class="main">
+		{% block content %}{% endblock %}
+	</div>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38058509-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

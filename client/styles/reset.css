@@ -1,0 +1,38 @@
+html,body,div,p,span,em,ul,ol,li,h1,h2,h3,h4,h5,h6,form,input,textarea,select,button,blockquote { 
+	margin: 0;
+	padding: 0; 
+}
+a,img,button { 
+	border: 0;
+	outline: 0;
+	cursor: pointer; 
+}
+a { 
+	text-decoration: none; 
+}
+input:focus { 
+	outline: 0;
+}
+li { 
+	list-style: none;
+}
+h1,h2,h3,h4,h5,h6 { 
+	font-size: 100%; 
+	font-weight: normal;
+}
+em,strong,address,caption,cite,code,pre { 
+	font-style: normal;
+	font-weight: normal;
+}
+header,footer,article,aside,nav,section,figure,figcaption { 
+	display: block;
+	margin: 0;
+	padding: 0; 
+}
+.clearfix:after { 
+	content: '.';
+	display: block;
+	visibility: hidden;
+	height: 0;
+	clear: both;
+}
