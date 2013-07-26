@@ -44,7 +44,7 @@ db.once('open', function(){
 
     var User = db.model('User');
     
-    User.count({ username:config.super_username, role: 'super' }, function(err, count){
+    User.count({ username:config.superUsername, role: 'super' }, function(err, count){
         if (count == 0) {
             var shaSum = crypto.createHash('sha256');
             shaSum.update(config.superPassword);
