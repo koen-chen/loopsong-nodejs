@@ -36,7 +36,7 @@ module.exports = function(app, db){
                 getKuwoLink(album, callback);
             },
             function(info, callback){
-                saveAlbum(info, request.session.loginUser['_id'], callback);
+                saveAlbum(Album, info, request.session.loginUser['_id'], callback);
             },
             function(err, result){
                 if (err) {
@@ -182,7 +182,7 @@ function getAlbumCover(dir, album, callback) {
     });
 }
 
-function saveAlbum(info, creater, callback) {
+function saveAlbum(Album, info, creater, callback) {
     var album = new Album({
         type: info.type,
         title: info.title,

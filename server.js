@@ -42,6 +42,13 @@ db.once('open', function(){
         db.model(item, schema); 
     });
 
+    initSuper(db);
+
+   	router.init(app, db);
+});
+
+
+function initSuper(db) {
     var User = db.model('User');
     
     User.count({ username:config.superUsername, role: 'super' }, function(err, count){
@@ -58,7 +65,4 @@ db.once('open', function(){
             }, function(){});
         }
     });
-
-   	router.init(app, db);
-});
-
+}
