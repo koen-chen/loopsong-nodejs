@@ -44,6 +44,7 @@ module.exports = function(app, db){
                 }
                 else {
                     request.session.album = result;
+                    resizeCover(app.get('client_dir'), request.session.album.cover);
                     response.redirect('/album/'+ result._id +'/edit');
                 }
             }
@@ -206,5 +207,15 @@ function saveAlbum(Album, info, creater, callback) {
 
     album.save(function (err, album) {
         callback && callback(null, err, album);
+    });
+}
+
+var gm = require('gm');
+function resizeCover(dir, cover){
+    gm(dir + '/images' + cover)
+    .resize(300, 300)
+    .autoOrient()
+    .write(dir + '/images' + cover, function(err){
+        console.log(err);
     });
 }
